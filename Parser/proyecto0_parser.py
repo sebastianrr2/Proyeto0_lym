@@ -57,7 +57,7 @@ def verifica_sintaxis(program_text):
     return result
 
 # Lee el archivo de entrada
-with open('ejemplo1', 'r') as file:
+with open('archivo_programa.robot', 'r') as file:
     programa_robot = file.read()
 
 # Ejecuta la verificación de sintaxis
@@ -67,5 +67,6 @@ if resultado == "SÍ":
     print("El programa tiene una sintaxis válida.")
 else:
     print("El programa tiene errores de sintaxis.")
+
 
 
