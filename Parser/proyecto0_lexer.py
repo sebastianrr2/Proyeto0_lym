@@ -1,5 +1,5 @@
-import ply.lex as Lexer
-# Lista de tokens
+import ply.lex as lex
+
 tokens = [
     'NAME',
     'NUMBER',
@@ -81,3 +81,4 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
     pass
+lexer = lex.lex()

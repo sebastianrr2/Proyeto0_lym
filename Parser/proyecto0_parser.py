@@ -37,7 +37,7 @@ def p_error(p):
     print("Syntax error at line", p.lineno)
 
 # Crea el lexer
-lexer = proyecto0_lexer.Lexer
+lexer = proyecto0_lexer.lexer
 parser = yacc.yacc()
 
 # Leer el archivo de ejemplo
