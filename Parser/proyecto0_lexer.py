@@ -1,127 +1,83 @@
-import ply.lex as lex
-
+import ply.lex as Lexer
 # Lista de tokens
-tokens = (
+tokens = [
+    'NAME',
     'NUMBER',
-    'ID',
-    'LPAREN',
-    'RPAREN',
-    'LBRACE',
-    'RBRACE',
+    'ASIGNACION',
+    'PARIZ',
+    'PARDER',
+    'COMA',
     'SEMICOLON',
-    'EQUALS',
-    'COMMA',
+    'LLAVEIZQ',
+    'LLAVEDER',
     'IF',
     'ELSE',
     'WHILE',
-    'NORTH',
-    'SOUTH',
-    'WEST',
-    'EAST',
-    'FRONT',
-    'RIGHT',
-    'LEFT',
-    'BACK',
-    'NOP',
+    'REPEAT',
+    'TIMES',
+    'FACING',
+    'CAN',
+    'MOVE',
+    'TURN',
+    'DROP',
+    'PICK_UP',
+    'OTHER_ACTION',
     'DEFVAR',
     'DEFPROC',
     'JUMP',
-    'WALK',
-    'LEAP',
-    'TURN',
-    'TURNTON',
-    'DROP',
-    'GET',
-    'GRAB',
+    'PUTCB',
     'LETGO',
-    'REPEATTIMES',
-)
+    'WALK',
+    'NORTH',
+    'SOUTH',
+    'EAST',
+    'WEST',
+    'NOP',
+    'YES',
+    'NO'
+]
 
-# Expresiones regulares para tokens
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_LBRACE = r'\{'
-t_RBRACE = r'\}'
+# Expresiones regulares para los tokens
+t_NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
+t_NUMBER = r'\d+'
+t_ASIGNACION = r'='
+t_PARIZ = r'\('
+t_PARDER = r'\)'
+t_COMA = r','
 t_SEMICOLON = r';'
-t_COMMA = r','
-t_EQUALS = r'='
-
-# Tokens específicos del lenguaje
-t_DEFVAR = r'defVar'
-t_DEFPROC = r'defProc'
-t_JUMP = r'jump'
-t_WALK = r'walk'
-t_LEAP = r'leap'
-t_TURN = r'turn'
-t_TURNTON = r'turnto'
-t_DROP = r'drop'
-t_GET = r'get'
-t_GRAB = r'grab'
-t_LETGO = r'letGo'
-t_NOP = r'nop'
+t_LLAVEIZQ = r'\{'
+t_LLAVEDER = r'\}'
 t_IF = r'if'
 t_ELSE = r'else'
 t_WHILE = r'while'
+t_REPEAT = r'repeat'
+t_TIMES = r'times'
+t_FACING = r'facing'
+t_CAN = r'can'
+t_MOVE = r'move'
+t_TURN = r'turn'
+t_DROP = r'drop'
+t_PICK_UP = r'pickup'
+t_OTHER_ACTION = r'other_action'
+t_DEFVAR = r'defVar'
+t_DEFPROC = r'defProc'
+t_JUMP = r'jump'
+t_PUTCB = r'putCB'
+t_LETGO = r'letGo'
+t_WALK = r'walk'
 t_NORTH = r'north'
 t_SOUTH = r'south'
-t_WEST = r'west'
 t_EAST = r'east'
-t_FRONT = r'front'
-t_RIGHT = r'right'
-t_LEFT = r'left'
-t_BACK = r'back'
-t_REPEATTIMES = r'repeatTimes'
+t_WEST = r'west'
+t_NOP = r'nop'
+t_YES = r'yes'
+t_NO = r'no'
 
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
-
-def t_ID(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value.lower(), 'ID')
-    return t
-
-# Ignorar espacios y tabuladores
+# Ignorar espacios y tabulaciones
 t_ignore = ' \t'
 
-# Nueva línea
+# Función para manejar saltos
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
-# Regla para manejar errores
-def t_error(t):
-    print(f"Error léxico en el carácter '{t.value[0]}'")
-    t.lexer.skip(1)
-
-# Construir el lexer
-lexer = lex.lex()
-
-# Palabras reservadas
-reserved = {
-    'defvar': 'DEFVAR',
-    'defproc': 'DEFPROC',
-    'jump': 'JUMP',
-    'walk': 'WALK',
-    'leap': 'LEAP',
-    'turn': 'TURN',
-    'turnto': 'TURNTON',
-    'drop': 'DROP',
-    'get': 'GET',
-    'grab': 'GRAB',
-    'letgo': 'LETGO',
-    'nop': 'NOP',
-    'if': 'IF',
-    'else': 'ELSE',
-    'while': 'WHILE',
-    'north': 'NORTH',
-    'south': 'SOUTH',
-    'west': 'WEST',
-    'east': 'EAST',
-    'front': 'FRONT',
-    'right': 'RIGHT',
-    'left': 'LEFT',
-    'back': 'BACK',
-    'repeattimes': 'REPEATTIMES',
-}
+    pass
