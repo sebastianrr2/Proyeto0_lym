@@ -1,0 +1,100 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ASIGNACION
+    CAN
+    COMA
+    DROP
+    EAST
+    ELSE
+    FACING
+    IF
+    JUMP
+    LETGO
+    LLAVEDER
+    LLAVEIZQ
+    MOVE
+    NAME
+    NO
+    NOP
+    NORTH
+    OTHER_ACTION
+    PARDER
+    PARIZ
+    PICK_UP
+    PUTCB
+    REPEAT
+    SOUTH
+    TIMES
+    TURN
+    WALK
+    WEST
+    WHILE
+    YES
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> commands_and_definitions program_body
+Rule 2     variable_definitions -> empty
+Rule 3     variable_definitions -> variable_definitions DEFVAR ID NUMBER SEMICOLON
+Rule 4     procedure_definitions -> empty
+Rule 5     procedure_definitions -> procedure_definitions DEFPROC ID LPAREN parameters RPAREN LBRACE program_body RBRACE
+Rule 6     parameters -> empty
+Rule 7     parameters -> ID COMMA parameters
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 
+CAN                  : 
+COMA                 : 
+DEFPROC              : 5
+DEFVAR               : 3
+DROP                 : 
+EAST                 : 
+ELSE                 : 
+FACING               : 
+IF                   : 
+JUMP                 : 
+LETGO                : 
+LLAVEDER             : 
+LLAVEIZQ             : 
+MOVE                 : 
+NAME                 : 
+NO                   : 
+NOP                  : 
+NORTH                : 
+NUMBER               : 3
+OTHER_ACTION         : 
+PARDER               : 
+PARIZ                : 
+PICK_UP              : 
+PUTCB                : 
+REPEAT               : 
+SEMICOLON            : 3
+SOUTH                : 
+TIMES                : 
+TURN                 : 
+WALK                 : 
+WEST                 : 
+WHILE                : 
+YES                  : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+COMMA                : 7
+ID                   : 3 5 7
+LBRACE               : 5
+LPAREN               : 5
+RBRACE               : 5
+RPAREN               : 5
+commands_and_definitions : 1
+empty                : 2 4 6
+parameters           : 5 7
+procedure_definitions : 5
+program              : 0
+program_body         : 1 5
+variable_definitions : 3
+
