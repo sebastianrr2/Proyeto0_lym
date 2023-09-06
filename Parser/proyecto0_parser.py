@@ -177,7 +177,7 @@ lexer = proyecto0_lexer.lexer
 parser = yacc.yacc()
 
 # Leer el archivo de ejemplo
-filename = r"c:\Users\sebas\OneDrive - Universidad de los Andes\5 semestre\lym\proyecto 0\Proyeto0_lym\Parser\ejemplo1"
+filename = r"C:\Users\User\Desktop\UniAndes\Lenguaje de maquinas\Proyeto0_lym\Parser\ejemplo3.txt"
 with open(filename, "r") as file:
     program = file.read()
 
