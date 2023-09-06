@@ -1,4 +1,4 @@
-"""
+
 import ply.yacc as yacc
 import proyecto0_lexer
 import os
@@ -21,7 +21,7 @@ def p_program(p):
 # Definición de variables (defVar)
 def p_variable_definitions(p):
 #    variable_definitions : empty
-                           | variable_definitions DEFVAR ID NUMBER SEMICOLON
+                           #| variable_definitions DEFVAR ID NUMBER SEMICOLON
     if len(p) > 2:
         # Verifica que la sintaxis sea correcta, incluyendo la palabra clave "defVar",
         # un nombre de variable (ID) y un valor inicial (NUMBER)
@@ -35,7 +35,7 @@ def p_variable_definitions(p):
 # Definición de procedimientos (defProc)
 def p_procedure_definitions(p):
 #    procedure_definitions : empty
-                            | procedure_definitions DEFPROC ID LPAREN parameters RPAREN LBRACE program_body RBRACE
+                            #| procedure_definitions DEFPROC ID LPAREN parameters RPAREN LBRACE program_body RBRACE
     if len(p) > 2:
         # Verifica que la sintaxis sea correcta para la definición de procedimientos
         if p[2].lower() != "defproc":
@@ -58,7 +58,7 @@ def p_procedure_definitions(p):
 # Parámetros de procedimientos
 def p_parameters(p):
 #    parameters : empty
-                  | ID COMMA parameters
+                  #| ID COMMA parameters
     if len(p) > 2:
         # Aquí puedes verificar la sintaxis correcta de los parámetros
         parameter_name = p[1]
@@ -100,85 +100,6 @@ if result is not None:
 else:
     print("El programa tiene errores de sintaxis.")
 
-"""
 
-import ply.yacc as yacc
-import proyecto0_lexer
-
-# Importa los tokens desde el lexer
-tokens = proyecto0_lexer.tokens
-
-# Define diccionarios para rastrear procedimientos y variables
-procedures = {}  # Para rastrear procedimientos definidos
-variables = {}  # Para rastrear variables definidas
-
-# Definición de la gramática con las reglas:
-
-def p_program(p):
-    """program : variable_definitions procedure_definitions"""
-    pass
-
-# Definición de variables (defVar)
-def p_variable_definitions(p):
-    """variable_definitions : empty
-                           | variable_definitions DEFVAR NAME NUMBER SEMICOLON"""
-    if len(p) > 2:
-        # Aquí puedes realizar las verificaciones necesarias para las definiciones de variables
-        variable_name = p[3]
-        variable_value = p[4]
-        # Puedes agregar el nombre de la variable y su valor al diccionario de variables
-        variables[variable_name] = variable_value
-
-# Definición de procedimientos (defProc)
-def p_procedure_definitions(p):
-    """procedure_definitions : empty
-                            | procedure_definitions DEFPROC NAME LPAREN parameters RPAREN LBRACE program_body RBRACE"""
-    if len(p) > 2:
-        # Aquí puedes realizar las verificaciones necesarias para las definiciones de procedimientos
-        procedure_name = p[3]
-        procedure_params = p[5]
-        procedure_body = p[8]
-        # Puedes agregar la definición del procedimiento al diccionario de procedimientos
-        procedures[procedure_name] = (procedure_params, procedure_body)
-
-# Parámetros de procedimientos
-def p_parameters(p):
-    """parameters : empty
-                  | NAME COMMA parameters"""
-    if len(p) > 2:
-        # Aquí puedes realizar las verificaciones necesarias para los parámetros de procedimientos
-        parameter_name = p[1]
-        # Puedes agregar el nombre del parámetro a la lista de parámetros
-
-# Resto de las reglas de tu gramática aquí...
-
-# Construye el parser
-parser = yacc.yacc()
-
-# Función para manejar la producción empty
-def p_empty(p):
-    'empty :'
-    pass
-
-# Función para manejar errores de sintaxis
-def p_error(p):
-    print("Syntax error at line", p.lineno)
-
-# Crea el lexer
-lexer = proyecto0_lexer.lexer
-
-# Leer el archivo de ejemplo
-filename = r"C:\Users\User\Desktop\UniAndes\Lenguaje de maquinas\Proyeto0_lym\Parser\ejemplo3.txt"
-with open(filename, "r") as file:
-    program = file.read()
-
-# Parsear el programa
-result = parser.parse(program)
-
-# Verificar si hubo errores de sintaxis
-if result is not None:
-    print("El programa tiene una sintaxis válida.")
-else:
-    print("El programa tiene errores de sintaxis.")
 
 
